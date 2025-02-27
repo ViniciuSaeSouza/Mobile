@@ -1,27 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View } from 'react-native';
+
+import { Button, StyleSheet, Text, View , Image} from 'react-native';
 
 export default function App() {
   return (
-    <View>
-      <View style={styles.container}>
+    <View style={styles.img}>
+      <View>
         <Button title='Clique aqui' onPress={() => {}}/>
         <Button title='Clique aqui' onPress={() => {}}/>
         <Button title='Clique aqui' onPress={() => {}}/>
       </View>
 
-      <View style={view2comEstilo}>
+      <View>
         <View>
           <Text>Texto 1</Text>
-          <Image />
+          <Image source={require('./assets/yago.jpg')} style={styles.img}/>
           <Text>Texto 1</Text>
         </View>
         <View>
           <Text>Texto 1</Text>
-          <Image />
+          <Image source={require('./assets/yago.jpg')} />
           <Text>Texto 1</Text>
           <Text>Texto 1</Text>
-          <Image/>
+          <Image source={require('./assets/yago.jpg')}/>
           <Text>Texto 1</Text>
         </View>
       </View>
@@ -36,4 +36,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  img: {
+    
+  }
 });
