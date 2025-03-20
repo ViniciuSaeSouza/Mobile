@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { FlatList } from "react-native-web";
+import PizzaItem from "./components/PizzaItem";
 
 export default function App() {
   const pizzas = [
@@ -107,7 +108,7 @@ export default function App() {
       </View>
     </View>
   );
-
+  
   return (
     <View style={styles.container}>
       <FlatList
@@ -127,29 +128,3 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-
-const stylesPizza =
-StyleSheet.create({
-  image: {
-    width: 80,
-    height: 80,
-    marginRight: 10,
-  },
-  info: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  name: {
-    fontSize: 18,
-    fontWeight: 'bold',
-
-  },
-  description: {
-    fontSize: 14,
-    color: '#666'
-  },
-  price: {
-    fontSize: 16,
-    color: '#000'
-  }
-})
