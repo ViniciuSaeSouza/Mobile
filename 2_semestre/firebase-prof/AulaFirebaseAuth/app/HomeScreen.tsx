@@ -4,12 +4,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 import ItemLoja from "../src/components/ItemLoja";
 import { useEffect, useState } from "react";
-import { deleteUser } from "firebase/auth";
+import { deleteUser, signOut } from "firebase/auth";
 import { auth, collection, addDoc, db, getDocs } from "../src/services/firebaseConfig";
 import ThemeToggleButton from "../src/components/ThemeToggleButton";
 import { useTheme } from "../src/context/ThemeContext";
 import * as Notifications from "expo-notifications"
 import * as Device from "expo-device"
+import { useAuth} from "@clerk/clerk-expo";
 
 //Configuração global das notificações no foreground
 Notifications.setNotificationHandler({
@@ -21,6 +22,7 @@ Notifications.setNotificationHandler({
 })
 
 export default function HomeScreen() {
+    const {signOut} = useAuth();
     const { colors } = useTheme()//Obtenho a paleta de cores(dark ou light)
     const router = useRouter()//Hook de navegação entre telas
     const [title, setTitle] = useState('')
@@ -36,7 +38,8 @@ export default function HomeScreen() {
 
 
     const realizarLogoff = async () => {
-        await AsyncStorage.removeItem('@user')
+        await AsyncStorage.removeItem('@user');
+        await signOut(); // Encerra a sessão Clerk+google
         router.push('/')
     }
     const excluirConta = () => {

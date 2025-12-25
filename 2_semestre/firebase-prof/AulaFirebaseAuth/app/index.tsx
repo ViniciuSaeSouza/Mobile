@@ -8,13 +8,17 @@ import { auth } from '../src/services/firebaseConfig'
 import { useTheme } from '../src/context/ThemeContext';
 import { useTranslation } from 'react-i18next'
 import ThemeToggleButton from '../src/components/ThemeToggleButton';
-
+import { GoogleAuthProvider } from 'firebase/auth';
+import GoogleSignIn from '../src/components/GoogleSignIn';
+import { useAuth } from '@clerk/clerk-expo';
 
 export default function LoginScreen() {
+  
+  const  {isSignedIn, signIn, user} = useAuth();
+  
   //Hook do i18next, que fornece a função t,
   //para buscar e traduzir para o idioma atual
   const { t, i18n } = useTranslation()
-
   const { colors } = useTheme()
 
   // Estados para armazenar os valores digitados
@@ -137,6 +141,7 @@ export default function LoginScreen() {
         <Text style={styles.textoBotao}>Login</Text>
       </TouchableOpacity>
 
+      <GoogleSignIn></GoogleSignIn>
       <ThemeToggleButton />
 
       <Link href="CadastrarScreen" style={{ marginTop: 20, color: colors.text, marginLeft: 150 }}>Cadastre-se</Link>
